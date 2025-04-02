@@ -1,7 +1,7 @@
 -- liquibase formatted sql
 -- changeset joakim.akerstrom:0
 
-CREATE TABLE IF NOT EXISTS messages (
+CREATE TABLE messages (
     id SERIAL PRIMARY KEY,
     username VARCHAR(32) NOT NULL,
     content TEXT NOT NULL,
