@@ -1,0 +1,17 @@
+include:
+  - ../../../database/docker-compose.database.yml
+
+services:
+  healthcheck:
+    image: kennethreitz/httpbin
+    ports:
+      - "8080:80"
+    depends_on:
+      liquibase:
+        condition: service_completed_successfully
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge

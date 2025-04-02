@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+numpy = "*"
+sqlalchemy = "*"
+psycopg2 = "*"
+pytest-docker = "*"
+fastapi = "*"
+unicorn = "*"
+pydantic = "*"
+pytest = "*"
+httpx = "*"
+pytest-env = "*"
+databases = "*"
+asyncpg = "*"
+pytest-asyncio = "*"
+black = "*"
+uvicorn = "*"
+pytest-ordering = "*"
+pytest-dependency = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
+python_full_version = "3.11.4"

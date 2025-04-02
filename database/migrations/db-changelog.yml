@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: scripts/0-create-messages-table.sql
+      relativeToChangelogFile: true
+  - include:
+      file: scripts/1-create-responses-table.sql
+      relativeToChangelogFile: true

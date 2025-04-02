@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:13
+    container_name: ${MESSENGER_DB_HOST}
+    environment:
+      POSTGRES_USER: ${MESSENGER_DB_USERNAME}
+      POSTGRES_PASSWORD: ${MESSENGER_DB_PASSWORD}
+      POSTGRES_DB: ${MESSENGER_DB_NAME}
+    ports:
+      - "${MESSENGER_DB_PORT}:${MESSENGER_DB_PORT}"
+    networks:
+      - local
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  liquibase:
+    image: liquibase/liquibase
+    container_name: liquibase
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      LIQUIBASE_DRIVER: org.postgresql.Driver
+    volumes:
+      - ./migrations/db-changelog.yml:/liquibase/db-changelog.yml
+      - ./migrations/scripts:/liquibase/scripts
+    command: --url=jdbc:postgresql://${MESSENGER_DB_HOST}:${MESSENGER_DB_PORT}/${MESSENGER_DB_NAME} --username=${MESSENGER_DB_USERNAME} --password=${MESSENGER_DB_PASSWORD} --changelogFile=db-changelog.yml update
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge

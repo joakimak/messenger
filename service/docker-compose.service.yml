@@ -1,0 +1,23 @@
+include:
+  - ../database/docker-compose.database.yml
+
+services:
+  fastapi-app:
+    build: .
+    container_name: fastapi_app
+    environment:
+      MESSENGER_DB_HOST: ${MESSENGER_DB_HOST}
+      MESSENGER_DB_PORT: ${MESSENGER_DB_PORT}
+      MESSENGER_DB_NAME: ${MESSENGER_DB_NAME}
+      MESSENGER_DB_USERNAME: ${MESSENGER_DB_USERNAME}
+      MESSENGER_DB_PASSWORD: ${MESSENGER_DB_PASSWORD}
+    depends_on:
+      - liquibase
+    ports:
+      - "80:80"
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge
