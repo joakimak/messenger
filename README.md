@@ -1,5 +1,5 @@
 # Requirements
-docker-compose >= 2.20.3
+* docker-compose >= 2.20.3
 
 # Setup & Tear down
 
