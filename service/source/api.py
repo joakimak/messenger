@@ -76,7 +76,7 @@ async def global_exception_handler(req: Request, e: Exception):
         request=str(req.url),
         error=str(e),
     )
-    return JSONResponse(status_code=400, content={"detail": "Bad request"})
+    return JSONResponse(status_code=422, content={"detail": "Bad request"})
 
 
 @app.get("/health", status_code=status.HTTP_200_OK)

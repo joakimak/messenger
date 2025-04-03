@@ -6,14 +6,14 @@ import logging
 
 class Logger:
     def __init__(self, name: str):
-        self._mdc_var = contextvars.ContextVar("mdc", default={})
-        self._formatter = logging.Formatter("%(message)s")
-        self._console_handler = logging.StreamHandler()
-        self._console_handler.setFormatter(self._formatter)
+        _formatter = logging.Formatter("%(message)s")
+        _console_handler = logging.StreamHandler()
+        _console_handler.setFormatter(_formatter)
         self._logger = logging.getLogger(name)
         self._logger.setLevel(logging.DEBUG)
         self._logger.handlers.clear()
-        self._logger.addHandler(self._console_handler)
+        self._logger.addHandler(_console_handler)
+        self._mdc_var = contextvars.ContextVar("mdc", default={})
 
     def info(self, message: str, **kwargs) -> None:
         self._log("info", message, **kwargs)
