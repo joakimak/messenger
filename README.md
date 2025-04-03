@@ -28,11 +28,11 @@
   5. Unser the environment variables lited in local.env
 
 # Usage
-  1. POST a message with
+  1. POST your first message with
      ```python
      curl -X 'POST' 'http://localhost/message/' 
      -H 'accept: application/json' 
      -H 'Content-Type: application/json'
      -d '{"username": "testuser", "content": "testcontent"}'
 
-  3. Open a browser and find the Swagger documentation for the API on http://localhost:80/docs
+  3. Open a browser and find the Swagger documentation for the full API on http://localhost:80/docs
