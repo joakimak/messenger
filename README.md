@@ -17,7 +17,7 @@
 2. Manually export all the environment variables in local.env
 3. Start the service with docker-compose ```docker-compose -f docker-compose.service.yml up --build```
 4. Tear down the service with ```docker-compose -f docker-compose.service.yml down```
-5. Unser the environment variables lited in local.env
+5. Unset the environment variables lited in local.env
 
 ### Windows
   * **Manual**
